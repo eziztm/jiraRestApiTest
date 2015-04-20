@@ -77,24 +77,24 @@ public class JiraApiClient {
             System.out.println(String.format("Created an issue [%s] %s", bi.getKey(), bi.getSelf()));
         }
 
-        //Getting an issue
+        // Getting an issue
         Promise<Issue> issuePromise = client.getIssueClient().getIssue(issueKey);
         Issue issue = issuePromise.claim();
 
         System.out.println(String.format("Retrieved an issue %s", issue.getKey()));
 
-        //Retrieve custom field names
+        // Retrieve custom field names
         System.out.println("\nCustom field: " + issue.getFieldByName("customfield_10001"));
 
-        //Add a comment in issue
+        // Add a comment in issue
         Comment comment = new Comment(null, "This is a comment from the api client", user, user, null, null, new Visibility(Visibility.Type.ROLE, "Users"), null);
         client.getIssueClient().addComment(issue.getCommentsUri(), comment);
 
-        //Update the issue description
+        // TODO: Update the issue description
         System.out.println("\nCurrent issue description is " + issue.getDescription());
 
-        //TODO
-        //Change Status
+
+        // Change Status
         System.out.println("\nCurrent issue status is " + issue.getStatus());
 
         // Retrieves a list of transition of the issue. The transition ID will be needed to change Issue status
